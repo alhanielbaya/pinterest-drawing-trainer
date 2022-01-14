@@ -1,0 +1,23 @@
+{
+  "name": "pinterest-drawing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^11.0.0",
+    "express": "^4.17.2",
+    "puppeteer": "^13.0.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/express-graphql": "^0.9.0",
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^17.0.8",
+    "@types/puppeteer": "^5.4.4",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  }
+}
