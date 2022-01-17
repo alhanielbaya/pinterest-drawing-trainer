@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.21de1166.css",
-    "main.js": "/static/js/main.94f30278.js",
-    "static/js/787.aef8eb06.chunk.js": "/static/js/787.aef8eb06.chunk.js",
-    "index.html": "/index.html",
-    "main.21de1166.css.map": "/static/css/main.21de1166.css.map",
-    "main.94f30278.js.map": "/static/js/main.94f30278.js.map",
-    "787.aef8eb06.chunk.js.map": "/static/js/787.aef8eb06.chunk.js.map"
+    "main.css": "/pinterest-drawing-trainer/static/css/main.21de1166.css",
+    "main.js": "/pinterest-drawing-trainer/static/js/main.2079d28e.js",
+    "static/js/787.aef8eb06.chunk.js": "/pinterest-drawing-trainer/static/js/787.aef8eb06.chunk.js",
+    "index.html": "/pinterest-drawing-trainer/index.html",
+    "main.21de1166.css.map": "/pinterest-drawing-trainer/static/css/main.21de1166.css.map",
+    "main.2079d28e.js.map": "/pinterest-drawing-trainer/static/js/main.2079d28e.js.map",
+    "787.aef8eb06.chunk.js.map": "/pinterest-drawing-trainer/static/js/787.aef8eb06.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.21de1166.css",
-    "static/js/main.94f30278.js"
+    "static/js/main.2079d28e.js"
   ]
 }
