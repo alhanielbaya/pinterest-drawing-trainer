@@ -1,0 +1,14 @@
+{
+  "name": "pinterest-drawing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/alhanielbaya/pinterest-drawing-trainer",
+  "author": "alhanielbaya <keepostrom@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  },
+  "scripts": {
+    "start": "concurrently -n \"cd client/;yarn start\" \"cd ../server/;yarn start\""
+  }
+}

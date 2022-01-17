@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Axios from "axios";
 import ImageLoading from "./ImageLoading";
 import Timer from "./Timer";
@@ -18,11 +18,17 @@ export interface Image {
 
 function ImageP({ numImages, interval, setPlaying }: Prop) {
   const [images, setImages] = useState<Array<Image>>([]);
-  const [currImgInd, setCurrImgInd] = useState(-1);
+  const [currImgInd, setCurrImgInd] = useState(0);
   const [change, setChange] = useState(true);
-  const [next, setNext] = useState(true);
   const [stop, setStop] = useState(false);
   const currImg = images[currImgInd];
+
+  const fetchImageUrls = useCallback(async () => {
+    const response = await Axios(
+      `http://localhost:4000/images?numImages=${numImages}`
+    );
+    setImages(response.data.slice(0, numImages));
+  }, [numImages]);
 
   useEffect(() => {
     const savedImgs = localStorage.getItem("images");
@@ -34,7 +40,7 @@ function ImageP({ numImages, interval, setPlaying }: Prop) {
         setPlaying(false);
       });
     }
-  }, []);
+  }, [fetchImageUrls, setPlaying]);
 
   useEffect(() => {
     if (images.length > 10) {
@@ -48,32 +54,23 @@ function ImageP({ numImages, interval, setPlaying }: Prop) {
     } else {
       setStop(false);
     }
-  }, [currImgInd]);
-
-  async function fetchImageUrls() {
-    const response = await Axios(
-      `http://localhost:4000/images?numImages=${numImages}`
-    );
-    setImages(response.data.slice(0, numImages));
-  }
+  }, [currImgInd, currImg]);
 
   function handleNext() {
-    setCurrImgInd(currImgInd + 1);
-    setNext(true);
+    handlePicture(true);
     setChange(true);
   }
   function handlePrev() {
-    setCurrImgInd(currImgInd - 1);
-    setNext(false);
+    // console.log("called prev");
+    handlePicture(false);
     setChange(true);
   }
-
-  function handleChange(change: boolean) {
+  const handleChange = (change: boolean) => {
     setChange(change);
-  }
+  };
 
-  function handlePicture() {
-    if (next === true) {
+  function handlePicture(n: boolean) {
+    if (n === true) {
       setCurrImgInd(currImgInd + 1);
     } else {
       setCurrImgInd(currImgInd - 1);
@@ -88,17 +85,26 @@ function ImageP({ numImages, interval, setPlaying }: Prop) {
   function temp() {
     return (
       <>
+        <div
+          className="fixed"
+          style={{
+            position: "absolute",
+            left: "50%",
+            transform: "translate(-50%, 0)",
+          }}
+        >
+          <Timer
+            handlePicture={handlePicture}
+            interval={interval}
+            change={change}
+            handleChange={handleChange}
+            stop={stop}
+          />
+        </div>
         <div className="bg-gray-900">
           <div
-            className={`container mx-auto pt-0 flex flex-col items-center justify-start h-screen`}
+            className={`container mx-auto pt-12 flex flex-col items-center justify-start h-screen`}
           >
-            <Timer
-              handlePicture={handlePicture}
-              interval={interval}
-              change={change}
-              handleChange={handleChange}
-              stop={stop}
-            />
             {currImg ? (
               <div
                 className="flex flex-col items-center justify-center"

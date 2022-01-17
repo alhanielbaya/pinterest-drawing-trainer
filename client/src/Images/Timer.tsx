@@ -1,10 +1,8 @@
-import { useState, useRef, useEffect } from "react";
-
-import { Image } from "./ImageP";
+import { useState, useEffect, useCallback } from "react";
 
 type Prop = {
   interval: number;
-  handlePicture: () => void;
+  handlePicture: (n: boolean) => void;
   change: boolean;
   handleChange: (change: boolean) => void;
   stop: boolean;
@@ -26,38 +24,39 @@ function Timer({ interval, handlePicture, change, handleChange, stop }: Prop) {
     return `${hDisplay}${mDisplay}${sDisplay}`;
   }
 
-  function handleReset() {
+  const handleReset = useCallback(() => {
     setSeconds(interval);
     setTimer(secondsToHms(interval));
-  }
+  }, [interval]);
 
+  // Main Timer
   useEffect(() => {
     const timer = setTimeout(() => {
       if (secondsLeft < 1) {
         handleChange(true);
+        handlePicture(true);
         return;
       }
       setSeconds(secondsLeft - 1);
       setTimer(secondsToHms(secondsLeft));
     }, 1000);
     return () => clearTimeout(timer);
-  }, [secondsLeft]);
+  }, [secondsLeft, handleChange, handlePicture]);
 
+  // Handle timer reset
   useEffect(() => {
     if (change) {
       handleChange(false);
       handleReset();
-      handlePicture();
     }
-    // if (intervalRef.current) clearTimeout(intervalRef.current);
-  }, [change]);
+  }, [change, handleChange, handleReset]);
+
+  const timerClass = ` tracking-wide text-2xl p-2 text-stone-100 bg-gray-900 rounded font-bold`;
 
   return stop ? (
-    <h1 className="text-large p-2 text-stone-100">{secondsToHms(interval)}</h1>
+    <h1 className={timerClass}>{secondsToHms(interval)}</h1>
   ) : (
-    <h1 className="tracking-wide text-large p-2 text-stone-100 bg-gray-900 rounded">
-      {timer}
-    </h1>
+    <h1 className={timerClass}>{timer}</h1>
   );
 }
 

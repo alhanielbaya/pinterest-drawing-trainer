@@ -21,18 +21,6 @@ app.get("/images", (req, res) => {
   });
 });
 
-app.post("/", (req, res) => {
-  return res.send("Received a POST HTTP method");
-});
-
-app.put("/", (req, res) => {
-  return res.send("Received a PUT HTTP method");
-});
-
-app.delete("/", (req, res) => {
-  return res.send("Received a DELETE HTTP method");
-});
-
 app.listen(process.env.PORT, () =>
   console.log("listening on " + process.env.PORT)
 );
