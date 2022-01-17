@@ -25,7 +25,7 @@ function ImageP({ numImages, interval, setPlaying }: Prop) {
 
   const fetchImageUrls = useCallback(async () => {
     const response = await Axios(
-      `http://localhost:4000/images?numImages=${numImages}`
+      `http://107.21.83.104:4000/images?numImages=${numImages}`
     );
     setImages(response.data.slice(0, numImages));
   }, [numImages]);
