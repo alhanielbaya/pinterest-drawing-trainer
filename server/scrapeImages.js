@@ -1,12 +1,11 @@
 const puppeteer = require("puppeteer");
-const path = require("path");
 
 const loginButton =
-  "#__PWS_ROOT__ > div:nth-child(1) > div > div > div > div:nth-child(2) > div.Jea._he.b8T.gjz.zI7.iyn.Hsu > div.Jea.l7T.zI7.iyn.Hsu > div:nth-child(2) > button";
+  "#__PWS_ROOT__ > div.zI7.iyn.Hsu > div > div > main > div:nth-child(2) > div.Jea._he.b8T.gjz.zI7.iyn.Hsu > div.Jea.l7T.zI7.iyn.Hsu > div:nth-child(2) > button > div";
 const nameInput = "#email";
 const passInput = "#password";
 const confirm =
-  "#__PWS_ROOT__ > div:nth-child(1) > div > div > div > div:nth-child(2) > div.Jea.MIw.TpD.mQ8.sLG.zI7.iyn.Hsu > div.Jea.MIw.QLY.Rym.jzS.mQ8.ojN.p6V.prG.sLG.zI7.iyn.Hsu > div > div > div > div > div > div > div > div:nth-child(4) > form > div:nth-child(5) > button";
+  "#__PWS_ROOT__ > div.zI7.iyn.Hsu > div > div > main > div:nth-child(2) > div.Jea.MIw.TpD.mQ8.sLG.zI7.iyn.Hsu > div.Jea.MIw.QLY.Rym.jzS.mQ8.ojN.p6V.prG.sLG.zI7.iyn.Hsu > div > div > div > div > div > div > div > div:nth-child(4) > form > div:nth-child(5) > button";
 
 const email = process.env.email;
 const password = process.env.password;
